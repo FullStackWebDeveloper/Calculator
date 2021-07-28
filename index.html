@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CodePen - JavaScript Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="./style.css">
+    <script type="text/template" id="key-pad-template">
+        <%  keyPads.map(function(keyPad, index) {   %>
+            <% if (index == 0) { %>
+            <div id="standard-buttons" class="container-fluid">
+            <% } %>
+            <% if (index == 23) { %>
+                <div id="advanced-buttons" class="container-fluid">
+            <% } %>
+            <% if ((index < 22 && index % 5 == 0 )|| (index >= 22 && index % 5 == 3)) { %>
+                <div class="row button-row">
+            <% } %>
+                    <div class="col-xs-1 <%- keyPad.get('width') == '2' ? 'margin-2 text-align-inital': '' %>">
+                        <button id="<%= keyPad.get('id') %>" class="btn <%= keyPad.get('class') %>"><%= keyPad.get('value') %></button>
+                    </div>
+            <% if ((index < 22 && index % 5 == 4) || (index >= 22 && index % 5 == 2)) { %>
+                </div>
+            <% } %>
+            <% if (index == 22) {%> 
+            </div>
+            <% } %>
+            <% if (index == 32) {%> 
+            </div>
+            <% } %>
+        <% }); %>
+    </script>
+
+</head>
+
+<body>
+    <!-- partial:index.partial.html -->
+
+    <body>
+        <div id="container" class="container">
+            <div>
+                <h1>Calculator</h1>
+                <div style="padding: 25px;" class="row button-row">
+                    <button id="toggle-advanced" class="btn button-off" title="Toggle advanced panel"
+                        onclick="toggleAdvanced()"><span class="glyphicon glyphicon-triangle-bottom"></span></button>
+                </div>
+            </div>
+
+            <div id="expression">
+
+            </div>
+
+            <div id="calculator">
+
+            </div>
+            <div id="standard-buttons" class="container-fluid">
+
+            </div>
+            <div id="calc-history">
+                <span>Calculation history</span>
+                <hr>
+                <div id="calc-history-box">
+
+                </div>
+            </div>
+            <div id="footer">
+                <p>Backbone Calculator for Test</p>
+            </div>
+        </div>
+    </body>
+    <!-- partial -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
+    <script src="./backbone.js"></script>
+    <script src="./script.js"></script>
+
+</body>
+
+</html>
